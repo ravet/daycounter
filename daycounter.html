@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<style>
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+body {
+  color: #FFFFFF; /* 글자 색 */
+  /* 배경색 지정하시려면 밑줄 양쪽 끝의 슬래시+별을 지워주세요 */
+  /* background-color: #FFFF00; */
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 80vh;
+  font-weight: 900;
+  text-align: center;
+  height: 100vh;
+  line-height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+</style>
+<script>
+var begin = new Date("2017/01/01"); // 시작 날짜로 고쳐주세요
+
+var oneday = 1000 * 60 * 60 * 24;
+var timer;
+
+window.onload = function(){
+	print();
+	var now = new Date();
+	var next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 1);
+	timer = setTimeout(interval, next.getTime() - now.getTime());
+	delete next, now;
+}
+
+function interval(){
+	clearTimeout(timer);
+	print();
+	timer = setInterval(print, oneday);
+}
+
+function print(){
+  var now = new Date();
+	var count = Math.ceil((now.getTime() - begin.getTime()) / oneday) - 1;
+	document.getElementById("day").innerHTML = count;
+	delete now;
+}
+</script>
+</head>
+
+<body>
+금연<span id="day">0</span>일차
+</body>
+
+</html>
